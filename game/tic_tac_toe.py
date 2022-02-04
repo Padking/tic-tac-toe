@@ -40,6 +40,9 @@ if __name__ == '__main__':
             continue
 
         update_cell_value(x, y, board, get_role_alias(role))
+        prepared_board = change_values_representation(board)
+        tabulated_board = tabulate(prepared_board, tablefmt='grid')
+        print(tabulated_board)
 
         loser_role_name = determine_loser(board)
         if loser_role_name:

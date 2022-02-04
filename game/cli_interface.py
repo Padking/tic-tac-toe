@@ -24,6 +24,7 @@ dialog_messages = {
 def create_parser():
     description = dedent('''
         Игра "Обратные крестики-нолики".
+        Право первого хода за пользователем.
 
     ''')
 
