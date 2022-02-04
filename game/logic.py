@@ -111,17 +111,3 @@ def determine_loser(board):
                 role_name = cell_value_alias[0]
 
                 return role_name
-
-
-if __name__ == '__main__':
-    board = get_start_game_board()
-    # print(board)
-
-    # x, y = get_cell_coords(board, 15)
-    # update_cell_value(x, y, board, 'x.0')
-    # print(board)
-
-    # board = change_values_representation(board)
-    # print(board)
-
-    # print(get_role_alias('o'))

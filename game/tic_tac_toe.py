@@ -56,7 +56,7 @@ if __name__ == '__main__':
             prepared_board = change_values_representation(board)
             tabulated_board = tabulate(prepared_board, tablefmt='grid')
             print(tabulated_board)
-        else:
+        else:  # Ничья
             game_process_msg = dialog_messages['game_process_3']
             print(game_process_msg)
             break
