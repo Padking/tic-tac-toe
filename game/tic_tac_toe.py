@@ -4,6 +4,7 @@ from cli_interface import (
     change_values_representation,
     create_parser,
     dialog_messages,
+    truncate,
 )
 
 from logic import (
@@ -40,8 +41,8 @@ if __name__ == '__main__':
             continue
 
         update_cell_value(x, y, board, get_role_alias(role))
-        prepared_board = change_values_representation(board)
-        tabulated_board = tabulate(prepared_board, tablefmt='grid')
+        prepared_board = change_values_representation(board, role)
+        tabulated_board = tabulate(prepared_board, tablefmt='')
         print(tabulated_board)
 
         loser_role_name = determine_loser(board)
@@ -56,8 +57,11 @@ if __name__ == '__main__':
             game_process_tmpl = dialog_messages['game_process_2']
             game_process_msg = game_process_tmpl.format(filled_cell_value)
             print(game_process_msg)
-            prepared_board = change_values_representation(board)
-            tabulated_board = tabulate(prepared_board, tablefmt='grid')
+
+            computer_role_alias = get_role_alias(role, inverse_role=True)
+            computer_role_name = truncate(computer_role_alias)
+            prepared_board = change_values_representation(board, computer_role_name)
+            tabulated_board = tabulate(prepared_board, tablefmt='')
             print(tabulated_board)
         else:  # Ничья
             game_process_msg = dialog_messages['game_process_3']

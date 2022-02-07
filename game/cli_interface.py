@@ -47,10 +47,20 @@ def create_parser():
     return parser
 
 
-def change_values_representation(board) -> list:
-    board = [[truncate(value) for value in row] for row in board]
+def change_values_representation(board, computer_role_name,
+                                 board_=None, row_=None) -> list:
 
-    return board
+    board_, row_ = board_ or list(), row_ or list()
+    for row in board:
+        for value in row:
+            truncated = truncate(value)
+            if truncated == computer_role_name:
+                truncated = get_transformed_repr(truncated)
+            row_.append(truncated)
+        board_.append(row_)
+        row_ = []
+
+    return board_
 
 
 def truncate(val):
@@ -58,4 +68,15 @@ def truncate(val):
         return int(val)
     elif isinstance(val, str):
         cell_value = val[0]
-        return str(cell_value)
+        return str(cell_value)  # FIXME
+
+
+def get_transformed_repr(val):
+    '''Преобразует представление значения клетки.'''
+
+    cell_template = dedent('''
+        |{}|
+    ''')
+    cell_repr = cell_template.format(val)
+
+    return cell_repr
