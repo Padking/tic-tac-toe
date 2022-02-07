@@ -33,11 +33,8 @@ if __name__ == '__main__':
         cell_value = input(dialog_messages['game_process_1'])
         try:
             x, y = get_cell_coords(board, cell_value)
-        except ValueError:
+        except (IndexError, ValueError):
             print(dialog_messages['game_exception_1'])
-            continue
-        except IndexError:
-            print(dialog_messages['game_exception_2'])
             continue
 
         update_cell_value(x, y, board, get_role_alias(role))
